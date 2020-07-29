@@ -1,14 +1,20 @@
 // Create the type of element you pass in the parameters
 let createNode = element => document.createElement(element);
+const ul = createNode("ul");
+
 
 // Append the second parameter(element) to the first one
 let append = (parent, el) => parent.appendChild(el);
-let pop_container = document.querySelector('.pop_container')   
+
+// Get the elements(the divs, search Input and search button) from the HTML
+const pop_container = document.querySelector('.pop_container');
 const serItem = document.querySelector('#search-text');
 const buttonSer = document.querySelector('#search-button');
+const mainContainer = document.getElementById("populate");
+const imageContainer = document.getElementById("first"); 
 
-const ul = createNode("ul");
 
+// Initial call to populate the names of Characters
 fetch('https://swapi.dev/api/people/?results')
   .then(response => response.json())
   .then(data => {
@@ -16,10 +22,7 @@ fetch('https://swapi.dev/api/people/?results')
   })
   .catch(err => console.log(err));
 
-let mainContainer = document.getElementById("populate");
-let imageContainer = document.getElementById("first"); 
-
-
+// Create a User class that will assign all neccessary properties to every fetched name from above
 class User {
   constructor(par) {
     this.par = par;
@@ -38,28 +41,23 @@ class User {
   }
  }
 
-// const searchFunction = (data) =>{
-//     return data.name;
-// }
-  
-// buttonSer.onclick = searchItem = () => serItem.value.trim();
-// console.log(searchItem);
 
+ /* Main function to fetch and filter the names of Characters, 
+    map the user details to each name 
+    and append the list of names to div elements for display*/
 function appendData(data) {
-  
   let character = data; // Get the results
   character.filter((par) => {
-    let li = createNode('li'), //  Create the elements we need
+    let li = createNode('li'), //  Create only the list elements we need neccessary to the filtered names
     p = createNode('p');
     
-    if(par.name.startsWith("")){
-      p.innerHTML = `${par.name}`; // Make the HTML of our span to be the first and last name of our author
-    }
+    p.innerHTML = `${par.name}`; // Make the HTML of our span to be the first and last name of our author
 
-  let user = new User(par);
-  let any = user.viewUser;
-  // Create the elements we need
-
+    // Calling get property on User
+    let user = new User(par);
+    let any = user.viewUser;
+  
+    // Responding to click on the name to bring up the details
     p.addEventListener("click", () => {
       pop_container.innerHTML = `
       <div>
@@ -69,22 +67,42 @@ function appendData(data) {
         <p>Height: <strong>${any.height}</strong></p>
       </div> 
       `
+
+      // Creating to a close button
       let only = document.querySelector('.close');
       only.onclick = () => {
       pop_container.style.display = "none";
       location.reload()
       } 
     });
-    append(li, p),
-    append(ul, li),
-    append(mainContainer, ul)
+    append(li, p), // Append list the test paragraph to list item
+    append(ul, li), // List item to unordered list group
+    append(mainContainer, ul) // List group to MainContainer(the bigger container)
   })
 }
 
-// let searchItem = () => {
-//   search = serItem.value.trim();
-//   // console.log(search);
-//   return search;
-// }
-// console.log(searchItem());
-// buttonSer.addEventListener("click", searchItem);
+/* Function to search through the fetch return to generate only names being searched for */
+let searchItem =  () => {
+  const list = document.getElementsByTagName("ul")[0]
+  search = serItem.value.trim();
+  fetch('https://swapi.dev/api/people/?results')
+                  .then(_=>_.json())
+                  .then(({results})=>{
+                    const filt = filter(search,results)
+                    list.innerHTML = ""
+                    appendData(filt)
+                  })
+                  .catch((e)=>{
+                    console.log("error occured",e)
+                  })
+}
+
+// Button to submit search query
+buttonSer.addEventListener("click", searchItem);
+
+// Function to filter data and initialize to empty string
+const filter = (arg = "",data)=>{
+  const reg = new RegExp(arg,"ig")
+  const filteredData =  data.filter((item)=>reg.test(item.name))
+  return filteredData
+}

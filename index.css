@@ -1,18 +1,59 @@
-/* @font-face {
-    font-family: star-wars;
-    src: url(./webfontkit/stjldbl1-webfont.woff);
-  }
-   */
+
 body{
-    background-color: #000;
     font-family: 'star_jedi_logo_monolineRg';
     font-weight: bolder;
     font-style:normal;
 }
 
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+.search-Div{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10%;
+    min-width: 100px;
+    min-height: 30px;
+}
+
+#search-button {
+    width: 7%;
+    height: 30px;
+    font-size: x-large;
+    font-weight: bolder;
+  }
+
+  #search-text {
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 30px;
+    width: 30%;
+    padding: 2px 23px 2px 30px;
+    outline: 0;
+    font-size: x-large;
+    background-color: #f5f5f5;
+  }
+
+li:hover{
+    cursor: pointer;
+    color: gold !important;
+}
+
+.content {
+    position: relative;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+  }
+
 #populate{
     display: flex;
-    /* position: absolute; */
 }
 
 .headers {
@@ -33,7 +74,6 @@ body{
     font-size: 200%;
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    /* padding: 3% 0 5% 0; */
 }
 
 .headers h1{
@@ -42,7 +82,7 @@ body{
 
 #first{
     width: 50%;
-    min-height: 100%;
+    min-height: 50em;
     background: url(https://m.media-amazon.com/images/M/MV5BMjIyMTU0MDM2NV5BMl5BanBnXkFtZTgwNzg3MjQyNDM@._V1_SY1000_CR0,0,669,1000_AL_.jpg) no-repeat center;    
 }
 
@@ -50,13 +90,16 @@ body{
     max-width: 100%;
 }
 #populate ul li{
-    background-color: #00ffff;
+    color: #00ffff;
     margin: 15px;
-    box-shadow: 0 4px 8px 0 #00ffff, 0 6px 20px 0 #000;
+    font-size: xx-large;
+    font-weight: bolder;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .close{
     float: right;
-    transform: translateY(-80px);
+    transform: translateY(-40px);
     padding-right: 2%;
-    text-decoration: double oblique red 300%;
+    color: gold;
 }
