@@ -42,7 +42,8 @@ class User {
 //     return data.name;
 // }
   
-  
+// buttonSer.onclick = searchItem = () => serItem.value.trim();
+// console.log(searchItem);
 
 function appendData(data) {
   
@@ -51,13 +52,14 @@ function appendData(data) {
     let li = createNode('li'), //  Create the elements we need
     p = createNode('p');
     
-    if(par.name.startsWith(searchItem())){
+    if(par.name.startsWith("")){
       p.innerHTML = `${par.name}`; // Make the HTML of our span to be the first and last name of our author
     }
+
   let user = new User(par);
   let any = user.viewUser;
   // Create the elements we need
- 
+
     p.addEventListener("click", () => {
       pop_container.innerHTML = `
       <div>
@@ -79,10 +81,10 @@ function appendData(data) {
   })
 }
 
-let searchItem = () => {
-  search = serItem.value.trim();
-  // console.log(search);
-  return search;
-}
+// let searchItem = () => {
+//   search = serItem.value.trim();
+//   // console.log(search);
+//   return search;
+// }
 // console.log(searchItem());
-buttonSer.addEventListener("click", searchItem);
+// buttonSer.addEventListener("click", searchItem);

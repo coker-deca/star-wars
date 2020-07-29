@@ -92,10 +92,62 @@
 
 // console.log (fizzBuzz(10));
 
-let serItem = "Luk"
+// let serItem = "Luk"
 
-let searchItem = () => {
-    search = serItem.trim();
-    return search;
-}
-console.log(searchItem());
+// let searchItem = () => {
+//     search = serItem.trim();
+//     return search;
+// }
+// console.log(searchItem());
+
+// function arrayPacking (integers) {
+//     //Returning the binary values
+//     let binaryValues = integers.map(integer => {
+//         let binaryNo8Bit = integer.toString(2);
+//         while(binaryNo8Bit.length<8)binaryNo8Bit="0"+binaryNo8Bit;
+//         return binaryNo8Bit;
+//     })
+//     singleBinary = parseInt(binaryValues.reverse().join(""), 2);
+//     return singleBinary.toString(10);
+// }
+
+// console.log(arrayPacking([24, 85, 0]))
+
+const hasUniqueChars = s => {
+  let count = 0;
+  let arrayOfChar = [];
+  for (let i = 0; i < s.length; i++){
+    let arrayValue = s.charCodeAt(i);
+    console.log(arrayValue);
+    arrayOfChar = arrayOfChar.push(arrayValue);
+    count++;
+    console.log(i)
+  }
+    
+  let arrayOfUnique = [...new Set(arrayOfChar)];
+  console.log(arrayOfChar + " and " + arrayOfUnique);
+  return arrayOfChar === arrayOfUnique;
+};
+
+console.log(hasUniqueChars("abcdefg"));
+
+
+
+const withdraw = amount => {
+  let bills = [0,0,0];
+  if (amount/100 > 0){
+    bills[0] = Math.floor(amount/100);
+    amount = amount % 100;
+  }
+  if (amount/50 > 0){
+    bills[1] = Math.floor(amount/50);
+    amount = amount % 50;
+  }
+  if (amount/20 > 0){
+    bills[2] = Math.floor(amount/20);
+    amount = amount % 20;
+  }
+  return bills;
+};
+
+console.log(withdraw(290))

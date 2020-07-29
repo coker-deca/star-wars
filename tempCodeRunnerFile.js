@@ -1,1 +1,1 @@
-console.log(searchItem());
+.reverse()
